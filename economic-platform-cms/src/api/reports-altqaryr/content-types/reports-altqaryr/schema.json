@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reports_altqaryrs",
+  "info": {
+    "singularName": "reports-altqaryr",
+    "pluralName": "reports-altqaryrs",
+    "displayName": "reports-التقارير"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "summary": {
+      "type": "blocks",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "file": {
+      "type": "media",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "date": {
+      "type": "datetime",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "sectors_alqtaeat": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::sectors-alqtaeat.sectors-alqtaeat"
+    }
+  }
+}

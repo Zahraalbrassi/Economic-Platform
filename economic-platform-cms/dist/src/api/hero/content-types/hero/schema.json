@@ -1,0 +1,34 @@
+{
+    "kind": "collectionType",
+    "collectionName": "heroes",
+    "info": {
+        "singularName": "hero",
+        "pluralName": "heroes",
+        "displayName": "hero"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {
+        "i18n": {
+            "localized": true
+        }
+    },
+    "attributes": {
+        "image": {
+            "type": "media",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            },
+            "multiple": true,
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ]
+        }
+    }
+}

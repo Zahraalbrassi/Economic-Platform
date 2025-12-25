@@ -1,5 +1,6 @@
 
-   const API_URL = process.env.NEXT_PUBLIC_CMS_URL || 'http://localhost:1337';
+   const API_URL =
+     process.env.CMS_API_URL || process.env.NEXT_PUBLIC_CMS_URL || 'http://localhost:1337';
 
    async function fetchFromCMS(path, { query = {} } = {}) {
      const url = new URL(`/api/${path}`, API_URL);

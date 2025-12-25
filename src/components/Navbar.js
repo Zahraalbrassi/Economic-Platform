@@ -35,10 +35,10 @@ export default function Navbar() {
         </Link>
 
         
-        <ul className="hidden md:flex space-x-6 font-medium items-center hover:text-red-800">
-          <li><Link href="/">{language === "ar" ? "الرئيسية" : "Home"}</Link></li>
+        <ul className="hidden md:flex space-x-6 font-medium items-center">
+          <li className="hover:text-red-800"><Link href="/">{language === "ar" ? "الرئيسية" : "Home"}</Link></li>
 
-          <li className="relative">
+          <li className="relative hover:text-red-800">
             <div
               onMouseEnter={() => setShowSubmenu(true)}
               onMouseLeave={() => setShowSubmenu(false)}
@@ -51,13 +51,13 @@ export default function Navbar() {
 
               {showSubmenu && (
                 <ul className="absolute top-full left-0 bg-white dark:bg-gray-800 border dark:border-gray-700 rounded shadow-lg w-48 z-50 text-sm">
-                  <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-red-800">
                     <Link href="/sectors/education">{language === "ar" ? "التعليم" : "Education"}</Link>
                   </li>
-                  <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-red-800">
                     <Link href="/sectors/health">{language === "ar" ? "الصحة" : "Health"}</Link>
                   </li>
-                  <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <li className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-red-800">
                     <Link href="/sectors/transport">{language === "ar" ? "النقل" : "Transport"}</Link>
                   </li>
                 </ul>

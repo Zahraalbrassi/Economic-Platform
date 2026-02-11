@@ -2,10 +2,11 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { fetchFromCMS } from '@/lib/strapi';
 import { useLanguage } from './LanguageProvider';
+import { makeT } from '@/lib/i18n';
 
 export default function LatestReportsSection() {
   const { language } = useLanguage();
-  const t = (en, ar) => (language === 'en' ? en : ar);
+  const t = makeT(language);
   const [latestReports, setLatestReports] = useState([]);
 
   useEffect(() => {

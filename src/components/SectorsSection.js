@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { FaSchool, FaHeartbeat, FaCar, FaBalanceScale } from 'react-icons/fa';
 import { useLanguage } from './LanguageProvider';
 import { fetchFromCMS } from '@/lib/strapi';
+import { makeT } from '@/lib/i18n';
 
 const sectorIcons = {
   education: <FaSchool className="text-xl text-blue-800 dark:text-blue-400" />,
@@ -21,7 +22,7 @@ function getSectorIcon(slug, name) {
 
 export default function SectorsSection() {
   const { language } = useLanguage();
-  const t = (en, ar) => (language === 'en' ? en : ar);
+  const t = makeT(language);
   const [sectors, setSectors] = useState([]);
 
   useEffect(() => {

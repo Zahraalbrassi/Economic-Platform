@@ -1,10 +1,11 @@
 
 import { Mail, MapPin, Phone, User, MessageSquare } from "lucide-react";
 import { useLanguage } from "./LanguageProvider";
+import { makeT } from "@/lib/i18n";
 
 export default function ContactUs() {
   const { language } = useLanguage();
-  const t = (en, ar) => (language === "en" ? en : ar);
+  const t = makeT(language);
 
   return (
    <section id="contact" className="max-w-6xl mx-auto px-6 py-16 dark:text-white ">

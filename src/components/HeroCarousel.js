@@ -2,34 +2,29 @@ import { useEffect, useState } from "react";
 import { fetchFromCMS } from "@/lib/strapi";
 import { useLanguage } from "./LanguageProvider";
 
-export default function HeroCarousel() {
+export default function HeroCarousel() {
   const [images, setImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isClient, setIsClient] = useState(false);
-  const { language } = useLanguage();              
+  const { language } = useLanguage();
 
-  // Only render on client to avoid hydration issues
   useEffect(() => {
+    // Avoid rendering on the server to prevent hydration mismatches
     setIsClient(true);
   }, []);
 
-
+  
   useEffect(() => {
     async function loadHero() {
       try {
         const heroes = await fetchFromCMS("heroes", {
-          query: {
-            locale: language,
-          },
+          query: { locale: language },
         });
 
-        const allImages = heroes.flatMap((hero) =>
-          (hero.image || []).map((img) => img.url)
-        );
-
-        setImages(allImages);
-      } catch (err) {
-        console.error("Failed to load hero images from CMS", err);
+        const sources = heroes.flatMap((hero) => (hero.image || []).map((img) => img.url));
+        setImages(sources);
+      } catch (error) {
+        console.error("Failed to load hero images from CMS", error);
       }
     }
 
@@ -39,11 +34,11 @@ export default function HeroCarousel() {
   useEffect(() => {
     if (!images.length) return;
 
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    const id = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
     }, 3000);
 
-    return () => clearInterval(interval);
+    return () => clearTimeout(id);
   }, [images]);
 
   if (!isClient || !images.length) return null;
@@ -51,9 +46,7 @@ export default function HeroCarousel() {
   return (
     <div className="w-screen h-screen overflow-hidden relative">
       {images.map((src, index) => {
-        const fullUrl = src.startsWith("http")
-          ? src
-          : `${process.env.NEXT_PUBLIC_CMS_URL}${src}`;
+        const fullUrl = src.startsWith("http") ? src : `${process.env.NEXT_PUBLIC_CMS_URL}${src}`;
 
         return (
           <img

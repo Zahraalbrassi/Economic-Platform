@@ -113,7 +113,9 @@ export default function Navbar() {
             <LanguageSwitcher />
           </li>
         </ul>
+        
       )}
+
     </nav>
   );
 }
